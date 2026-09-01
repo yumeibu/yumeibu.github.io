@@ -30,9 +30,8 @@
 
     <nav class="primary-nav" aria-label="主要ナビゲーション">
       <a href="#features">できること</a>
-      <a href="#route">路線図</a>
+      <a href="#lines">路線を選ぶ</a>
       <a href="#news">お知らせ</a>
-      <a href="#rolling-stock">車両</a>
       <a href="#community">コミュニティ</a>
     </nav>
 
@@ -54,9 +53,8 @@
 
   <nav class="container mobile-nav" id="mobileNav" aria-label="モバイルナビゲーション">
     <a href="#features">できること</a>
-    <a href="#route">路線図</a>
+    <a href="#lines">路線を選ぶ</a>
     <a href="#news">お知らせ</a>
-    <a href="#rolling-stock">車両</a>
     <a href="#community">コミュニティ</a>
     <div class="mobile-nav__ctas">
       <a class="btn btn--ghost" href="#community">Discordに参加</a>
@@ -72,15 +70,15 @@
     <div class="container hero__inner">
       <div>
         <h1>レールの上に、<br>日常をつくる。</h1>
-        <p class="lead">Robloxで運行中の鉄道シミュレーター「Roblox鉄道」。駅をつくり、列車を走らせ、時刻表どおりのダイヤを仲間と運行しよう。</p>
+        <p class="lead">Robloxで運行中の鉄道シミュレーター「Roblox鉄道」。プレイス内には性格の異なる4つの鉄道が運行中。駅をつくり、列車を走らせ、時刻表どおりのダイヤを仲間と運行しよう。</p>
         <div class="hero__ctas">
           <!-- TODO: Robloxゲームの実際のURLに差し替えてください -->
           <a class="btn btn--primary" href="#"><span class="play-icon" aria-hidden="true"></span>プレイする</a>
-          <a class="btn btn--ghost" href="#community">Discordに参加</a>
+          <a class="btn btn--ghost" href="#lines">路線を選ぶ</a>
         </div>
         <div class="hero__stats">
-          <div class="stat"><div class="num">42</div><div class="label">駅数</div></div>
-          <div class="stat"><div class="num">15</div><div class="label">車両形式</div></div>
+          <div class="stat"><div class="num">4</div><div class="label">運行路線</div></div>
+          <div class="stat"><div class="num">23</div><div class="label">駅数</div></div>
           <div class="stat"><div class="num">3.1万</div><div class="label">登録運転士</div></div>
         </div>
       </div>
@@ -144,40 +142,17 @@
     </div>
   </section>
 
-  <!-- ============ 路線図 ============ -->
-  <section id="route">
+  <!-- ============ 路線を選ぶ ============ -->
+  <section id="lines">
     <div class="container">
       <div class="section__head">
-        <h2>路線図</h2>
-        <p>現在運行中の2路線をご紹介。駅は今も増え続けています。</p>
+        <h2>路線を選ぶ</h2>
+        <p>このプレイスには性格の異なる4つの鉄道が運行中。気になる路線を選ぶと、駅と車両の詳細が切り替わります。</p>
       </div>
 
-      <div class="route-block">
-        <div class="route-legend"><span class="dot" style="background:var(--teal)"></span>本線</div>
-        <div class="route-scroll">
-          <div class="route-track" style="--tl: var(--teal)">
-            <div class="station"><span class="station__num">1</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">港北</span></div>
-            <div class="station"><span class="station__num">2</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">桜台</span></div>
-            <div class="station"><span class="station__num">3</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">中央</span></div>
-            <div class="station"><span class="station__num">4</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">本町</span></div>
-            <div class="station"><span class="station__num">5</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">川岸</span></div>
-            <div class="station"><span class="station__num">6</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">新田</span></div>
-            <div class="station"><span class="station__num">7</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">みなと中央</span></div>
-            <div class="station"><span class="station__num">8</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">湾岸ふ頭</span></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="route-block">
-        <div class="route-legend"><span class="dot" style="background:var(--amber)"></span>支線（桜台分岐）</div>
-        <div class="route-scroll">
-          <div class="route-track">
-            <div class="station"><span class="station__num">1</span><span class="station__dot" style="background:var(--amber)"></span><span class="station__name">桜台</span></div>
-            <div class="station"><span class="station__num">2</span><span class="station__dot" style="background:var(--amber)"></span><span class="station__name">花園</span></div>
-            <div class="station"><span class="station__num">3</span><span class="station__dot" style="background:var(--amber)"></span><span class="station__name">森下</span></div>
-            <div class="station"><span class="station__num">4</span><span class="station__dot" style="background:var(--amber)"></span><span class="station__name">東台</span></div>
-          </div>
-        </div>
+      <div class="lines-layout">
+        <div class="lines-sidebar" role="tablist" aria-label="路線一覧" id="lineTabs"></div>
+        <div class="line-panel" role="tabpanel" id="linePanel" aria-live="polite"></div>
       </div>
     </div>
   </section>
@@ -230,70 +205,6 @@
     </div>
   </section>
 
-  <!-- ============ 車両紹介 ============ -->
-  <section id="rolling-stock">
-    <div class="container">
-      <div class="section__head">
-        <h2>車両紹介</h2>
-        <p>用途ごとに個性の異なる車両が、それぞれの路線で活躍しています。</p>
-      </div>
-
-      <div class="gallery">
-        <article class="train-card" style="--accent:var(--teal)">
-          <div class="train-card__art">
-            <div class="body"></div>
-            <div class="windows"><span></span><span></span><span></span><span></span></div>
-            <div class="wheels"><span></span><span></span></div>
-          </div>
-          <div class="train-card__info">
-            <div class="train-card__type">通勤形</div>
-            <div class="train-card__name">E001系</div>
-            <p class="train-card__spec">各駅停車で活躍する主力車両。定員140名／最高速度100km/h</p>
-          </div>
-        </article>
-
-        <article class="train-card" style="--accent:var(--amber)">
-          <div class="train-card__art">
-            <div class="body"></div>
-            <div class="windows"><span></span><span></span><span></span><span></span></div>
-            <div class="wheels"><span></span><span></span></div>
-          </div>
-          <div class="train-card__info">
-            <div class="train-card__type">快速形</div>
-            <div class="train-card__name">K200系</div>
-            <p class="train-card__spec">加速性能に優れた快速用車両。定員120名／最高速度120km/h</p>
-          </div>
-        </article>
-
-        <article class="train-card" style="--accent:var(--red)">
-          <div class="train-card__art">
-            <div class="body"></div>
-            <div class="windows"><span></span><span></span><span></span></div>
-            <div class="wheels"><span></span><span></span></div>
-          </div>
-          <div class="train-card__info">
-            <div class="train-card__type">特急形</div>
-            <div class="train-card__name">L-Express</div>
-            <p class="train-card__spec">座席指定の特急専用車両。定員80名／最高速度130km/h</p>
-          </div>
-        </article>
-
-        <article class="train-card" style="--accent:var(--violet)">
-          <div class="train-card__art">
-            <div class="body"></div>
-            <div class="windows"><span></span><span></span></div>
-            <div class="wheels"><span></span><span></span></div>
-          </div>
-          <div class="train-card__info">
-            <div class="train-card__type">コミュニティ形</div>
-            <div class="train-card__name">みんなの貨物</div>
-            <p class="train-card__spec">コミュニティ制作の貨物列車。最高速度90km/h</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <!-- ============ コミュニティ ============ -->
   <section id="community" class="community">
     <div class="container community__inner">
@@ -338,9 +249,8 @@
         <h3>サイトマップ</h3>
         <ul>
           <li><a href="#features">できること</a></li>
-          <li><a href="#route">路線図</a></li>
+          <li><a href="#lines">路線を選ぶ</a></li>
           <li><a href="#news">お知らせ</a></li>
-          <li><a href="#rolling-stock">車両</a></li>
           <li><a href="#community">コミュニティ</a></li>
         </ul>
       </div>
