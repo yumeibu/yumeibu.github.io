@@ -1,1 +1,368 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roblox鉄道 | みんなでつくる鉄道シミュレーター</title>
+<meta name="description" content="Robloxで運行中の鉄道シミュレーター「Roblox鉄道」。駅づくりから運転、ダイヤ管理まで仲間と楽しめます。">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚃</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=DotGothic16&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">本文へスキップ</a>
 
+<!-- ============ ヘッダー ============ -->
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="logo" href="#top" aria-label="Roblox鉄道 トップへ">
+      <svg class="logo__mark" viewBox="0 0 26 22" aria-hidden="true">
+        <rect x="2" y="2" width="22" height="13" rx="3" fill="none" stroke="var(--amber)" stroke-width="2"/>
+        <rect x="6" y="6" width="4.5" height="4.5" fill="var(--amber)"/>
+        <rect x="15.5" y="6" width="4.5" height="4.5" fill="var(--amber)"/>
+        <circle cx="7" cy="19" r="2.2" fill="var(--text)"/>
+        <circle cx="19" cy="19" r="2.2" fill="var(--text)"/>
+      </svg>
+      <span>Roblox鉄道</span>
+    </a>
+
+    <nav class="primary-nav" aria-label="主要ナビゲーション">
+      <a href="#features">できること</a>
+      <a href="#route">路線図</a>
+      <a href="#news">お知らせ</a>
+      <a href="#rolling-stock">車両</a>
+      <a href="#community">コミュニティ</a>
+    </nav>
+
+    <div class="header-actions">
+      <a class="btn btn--ghost" href="#community">Discordに参加</a>
+      <!-- TODO: Robloxゲームの実際のURLに差し替えてください -->
+      <a class="btn btn--primary" href="#">
+        <span class="play-icon" aria-hidden="true"></span>プレイする
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="メニューを開く">
+        <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true">
+          <rect width="18" height="2" fill="currentColor"/>
+          <rect y="6" width="18" height="2" fill="currentColor"/>
+          <rect y="12" width="18" height="2" fill="currentColor"/>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <nav class="container mobile-nav" id="mobileNav" aria-label="モバイルナビゲーション">
+    <a href="#features">できること</a>
+    <a href="#route">路線図</a>
+    <a href="#news">お知らせ</a>
+    <a href="#rolling-stock">車両</a>
+    <a href="#community">コミュニティ</a>
+    <div class="mobile-nav__ctas">
+      <a class="btn btn--ghost" href="#community">Discordに参加</a>
+      <a class="btn btn--primary" href="#"><span class="play-icon" aria-hidden="true"></span>プレイする</a>
+    </div>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============ ヒーロー ============ -->
+  <section id="top">
+    <div class="container hero__inner">
+      <div>
+        <h1>レールの上に、<br>日常をつくる。</h1>
+        <p class="lead">Robloxで運行中の鉄道シミュレーター「Roblox鉄道」。駅をつくり、列車を走らせ、時刻表どおりのダイヤを仲間と運行しよう。</p>
+        <div class="hero__ctas">
+          <!-- TODO: Robloxゲームの実際のURLに差し替えてください -->
+          <a class="btn btn--primary" href="#"><span class="play-icon" aria-hidden="true"></span>プレイする</a>
+          <a class="btn btn--ghost" href="#community">Discordに参加</a>
+        </div>
+        <div class="hero__stats">
+          <div class="stat"><div class="num">42</div><div class="label">駅数</div></div>
+          <div class="stat"><div class="num">15</div><div class="label">車両形式</div></div>
+          <div class="stat"><div class="num">3.1万</div><div class="label">登録運転士</div></div>
+        </div>
+      </div>
+
+      <div class="board" aria-label="発車案内">
+        <div class="board__head">
+          <span class="board__title">のりば案内</span>
+          <span class="board__clock" id="clock" aria-live="off">--<span class="colon">:</span>--</span>
+        </div>
+        <div id="boardRows"></div>
+        <div class="board__status"><span class="status-dot" aria-hidden="true"></span>運行情報：平常運転</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ できること ============ -->
+  <section id="features">
+    <div class="container">
+      <div class="section__head">
+        <h2>できること</h2>
+        <p>駅づくりから運転、ダイヤ管理まで。ひとりでも、仲間とでも楽しめます。</p>
+      </div>
+
+      <div class="features">
+        <article class="feature-card feature-card--lead">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="4" y="4" width="16" height="11" rx="2"/>
+            <rect x="7" y="7" width="4" height="3.5"/>
+            <rect x="13" y="7" width="4" height="3.5"/>
+            <circle cx="8" cy="19" r="1.6"/><circle cx="16" cy="19" r="1.6"/>
+          </svg>
+          <h3>運転体験</h3>
+          <p>運転台目線でリアルな加減速・警笛・停車位置合わせまで再現。始発から終電まで、その日のダイヤ通りに走らせよう。</p>
+        </article>
+
+        <article class="feature-card">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <path d="M3 20h18"/><path d="M5 20V9l7-5 7 5v11"/><path d="M9 20v-6h6v6"/>
+          </svg>
+          <h3>駅づくり</h3>
+          <p>ホームの長さや屋根、看板まで自由に設計できる駅エディタ。</p>
+        </article>
+
+        <article class="feature-card">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3.2 2"/>
+          </svg>
+          <h3>ダイヤ管理</h3>
+          <p>路線ごとに時刻表を組み、遅延やダイヤ乱れも再現できる運行システム。</p>
+        </article>
+
+        <article class="feature-card feature-card--wide">
+          <svg class="feature-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+            <path d="M17.5 14v7M14 17.5h7"/>
+          </svg>
+          <h3>みんなで拡張</h3>
+          <p>コミュニティが作った車両や路線をワークショップから追加。あなたの作品も、次のアップデートで走り出すかもしれません。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 路線図 ============ -->
+  <section id="route">
+    <div class="container">
+      <div class="section__head">
+        <h2>路線図</h2>
+        <p>現在運行中の2路線をご紹介。駅は今も増え続けています。</p>
+      </div>
+
+      <div class="route-block">
+        <div class="route-legend"><span class="dot" style="background:var(--teal)"></span>本線</div>
+        <div class="route-scroll">
+          <div class="route-track" style="--tl: var(--teal)">
+            <div class="station"><span class="station__num">1</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">港北</span></div>
+            <div class="station"><span class="station__num">2</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">桜台</span></div>
+            <div class="station"><span class="station__num">3</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">中央</span></div>
+            <div class="station"><span class="station__num">4</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">本町</span></div>
+            <div class="station"><span class="station__num">5</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">川岸</span></div>
+            <div class="station"><span class="station__num">6</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">新田</span></div>
+            <div class="station"><span class="station__num">7</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">みなと中央</span></div>
+            <div class="station"><span class="station__num">8</span><span class="station__dot" style="background:var(--teal)"></span><span class="station__name">湾岸ふ頭</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="route-block">
+        <div class="route-legend"><span class="dot" style="background:var(--amber)"></span>支線（桜台分岐）</div>
+        <div class="route-scroll">
+          <div class="route-track">
+            <div class="station"><span class="station__num">1</span><span class="station__dot" style="background:var(--amber)"></span><span class="station__name">桜台</span></div>
+            <div class="station"><span class="station__num">2</span><span class="station__dot" style="background:var(--amber)"></span><span class="station__name">花園</span></div>
+            <div class="station"><span class="station__num">3</span><span class="station__dot" style="background:var(--amber)"></span><span class="station__name">森下</span></div>
+            <div class="station"><span class="station__num">4</span><span class="station__dot" style="background:var(--amber)"></span><span class="station__name">東台</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ お知らせ ============ -->
+  <section id="news">
+    <div class="container">
+      <div class="section__head">
+        <h2>お知らせ</h2>
+        <p>アップデートや新駅開業など、最新情報をお届けします。</p>
+      </div>
+
+      <div class="news-list">
+        <article class="news-item">
+          <div class="news-date"><span class="year">2026</span><span class="md">08.30</span></div>
+          <div>
+            <h3 class="news-title">夏季臨時ダイヤを追加運行</h3>
+            <p class="news-desc">お盆期間にあわせて、本線に臨時快速を増発しました。時刻表からご確認いただけます。</p>
+          </div>
+          <span class="news-item__tag" style="background:rgba(63,167,150,.18);color:var(--teal)">アップデート</span>
+        </article>
+
+        <article class="news-item">
+          <div class="news-date"><span class="year">2026</span><span class="md">08.20</span></div>
+          <div>
+            <h3 class="news-title">新型車両「K200系」お披露目</h3>
+            <p class="news-desc">加速性能を向上させた快速用の新型車両が、本線でデビューしました。</p>
+          </div>
+          <span class="news-item__tag" style="background:rgba(255,181,69,.16);color:var(--amber)">新車両</span>
+        </article>
+
+        <article class="news-item">
+          <div class="news-date"><span class="year">2026</span><span class="md">08.05</span></div>
+          <div>
+            <h3 class="news-title">新駅「みなと中央」開業</h3>
+            <p class="news-desc">本線に新駅が加わりました。周辺エリアの駅前開発マップも公開中です。</p>
+          </div>
+          <span class="news-item__tag" style="background:rgba(226,80,60,.16);color:var(--red)">新駅</span>
+        </article>
+
+        <article class="news-item">
+          <div class="news-date"><span class="year">2026</span><span class="md">07.28</span></div>
+          <div>
+            <h3 class="news-title">「夜間ダイヤ」イベント開催</h3>
+            <p class="news-desc">週末限定で夜間モードの終電ダイヤを体験できるイベントを実施しました。</p>
+          </div>
+          <span class="news-item__tag" style="background:rgba(63,167,150,.18);color:var(--teal)">イベント</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 車両紹介 ============ -->
+  <section id="rolling-stock">
+    <div class="container">
+      <div class="section__head">
+        <h2>車両紹介</h2>
+        <p>用途ごとに個性の異なる車両が、それぞれの路線で活躍しています。</p>
+      </div>
+
+      <div class="gallery">
+        <article class="train-card" style="--accent:var(--teal)">
+          <div class="train-card__art">
+            <div class="body"></div>
+            <div class="windows"><span></span><span></span><span></span><span></span></div>
+            <div class="wheels"><span></span><span></span></div>
+          </div>
+          <div class="train-card__info">
+            <div class="train-card__type">通勤形</div>
+            <div class="train-card__name">E001系</div>
+            <p class="train-card__spec">各駅停車で活躍する主力車両。定員140名／最高速度100km/h</p>
+          </div>
+        </article>
+
+        <article class="train-card" style="--accent:var(--amber)">
+          <div class="train-card__art">
+            <div class="body"></div>
+            <div class="windows"><span></span><span></span><span></span><span></span></div>
+            <div class="wheels"><span></span><span></span></div>
+          </div>
+          <div class="train-card__info">
+            <div class="train-card__type">快速形</div>
+            <div class="train-card__name">K200系</div>
+            <p class="train-card__spec">加速性能に優れた快速用車両。定員120名／最高速度120km/h</p>
+          </div>
+        </article>
+
+        <article class="train-card" style="--accent:var(--red)">
+          <div class="train-card__art">
+            <div class="body"></div>
+            <div class="windows"><span></span><span></span><span></span></div>
+            <div class="wheels"><span></span><span></span></div>
+          </div>
+          <div class="train-card__info">
+            <div class="train-card__type">特急形</div>
+            <div class="train-card__name">L-Express</div>
+            <p class="train-card__spec">座席指定の特急専用車両。定員80名／最高速度130km/h</p>
+          </div>
+        </article>
+
+        <article class="train-card" style="--accent:var(--violet)">
+          <div class="train-card__art">
+            <div class="body"></div>
+            <div class="windows"><span></span><span></span></div>
+            <div class="wheels"><span></span><span></span></div>
+          </div>
+          <div class="train-card__info">
+            <div class="train-card__type">コミュニティ形</div>
+            <div class="train-card__name">みんなの貨物</div>
+            <p class="train-card__spec">コミュニティ制作の貨物列車。最高速度90km/h</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ コミュニティ ============ -->
+  <section id="community" class="community">
+    <div class="container community__inner">
+      <h2>運転士たちの声を、次のダイヤに。</h2>
+      <p>Discordでは運行状況の共有や新路線の提案、開発の裏側も公開しています。Xでは最新のお知らせをいち早くお届け。</p>
+      <div class="community__ctas">
+        <!-- TODO: DiscordサーバーのURLに差し替えてください -->
+        <a class="btn btn--primary" href="#">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 20l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          Discordに参加する
+        </a>
+        <!-- TODO: X（旧Twitter）のURLに差し替えてください -->
+        <a class="btn btn--on-teal" href="#">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4l16 16M20 4L4 20"/></svg>
+          最新情報をみる
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ フッター ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a class="logo" href="#top" aria-label="Roblox鉄道 トップへ">
+          <svg class="logo__mark" viewBox="0 0 26 22" aria-hidden="true">
+            <rect x="2" y="2" width="22" height="13" rx="3" fill="none" stroke="var(--amber)" stroke-width="2"/>
+            <rect x="6" y="6" width="4.5" height="4.5" fill="var(--amber)"/>
+            <rect x="15.5" y="6" width="4.5" height="4.5" fill="var(--amber)"/>
+            <circle cx="7" cy="19" r="2.2" fill="var(--text)"/>
+            <circle cx="19" cy="19" r="2.2" fill="var(--text)"/>
+          </svg>
+          <span>Roblox鉄道</span>
+        </a>
+        <p>Robloxで運行中の鉄道シミュレーター。駅づくりと運転を、みんなで楽しもう。</p>
+      </div>
+
+      <div class="footer__col">
+        <h3>サイトマップ</h3>
+        <ul>
+          <li><a href="#features">できること</a></li>
+          <li><a href="#route">路線図</a></li>
+          <li><a href="#news">お知らせ</a></li>
+          <li><a href="#rolling-stock">車両</a></li>
+          <li><a href="#community">コミュニティ</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h3>リンク</h3>
+        <ul>
+          <!-- TODO: 各URLに差し替えてください -->
+          <li><a href="#">Robloxでプレイ</a></li>
+          <li><a href="#">Discordサーバー</a></li>
+          <li><a href="#">X（旧Twitter）</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p class="disclaimer">本サイトは個人・コミュニティによるファン制作のテンプレートです。Roblox Corporationおよびその関連会社とは一切関係ありません。掲載内容には制作中のものを含みます。</p>
+      <p>© 2026 Roblox鉄道 Project</p>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
