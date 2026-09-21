@@ -1,9 +1,8 @@
-# yumeibu.github.io
 # 南部鉄道 ホームページ
 
 ## 構成
 ```
-index.html              トップページ
+index.html              トップページ(仮のプレースホルダーです。自由に内容を作成してください)
 railway/                鉄道について
   ├ index.html            概要
   ├ route.html            路線図
@@ -15,6 +14,8 @@ models/                 Robloxモデル配布
 style.css               共通スタイル
 script.js               共通スクリプト(モバイルメニューの開閉)
 ```
+
+`index.html` はヘッダー・フッター(共通メニュー)だけを残し、中身は最小限のプレースホルダーにしてあります。`style.css` には `hero__inner` / `service-card` / `hub-grid` / `legend-list` など、他ページで使っているパーツのスタイルも残してあるので、ホームページを作る際に自由に組み合わせて使えます。
 
 ## GitHub Pagesでの公開方法
 1. このフォルダの中身をリポジトリのルートにアップロードする
