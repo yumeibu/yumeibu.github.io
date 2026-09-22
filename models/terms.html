@@ -2,8 +2,16 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<script>
+(function(){
+  try {
+    var t = localStorage.getItem('theme');
+    if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+  } catch (e) {}
+})();
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>利用規約 | 南部鉄道</title>
+<title>利用規約 | ユメイブの部屋</title>
 <meta name="description" content="南部鉄道が配布するRobloxモデルの利用規約。">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚃</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,23 +24,34 @@
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="logo" href="../index.html" aria-label="南部鉄道 トップへ">
+    <a class="logo" href="../index.html" aria-label="ユメイブの部屋 トップへ">
       <svg class="logo__mark" viewBox="0 0 34 30" aria-hidden="true">
         <polygon points="4,26 4,14 24,4 24,16" fill="var(--brand)"/>
         <polygon points="12,26 12,14 30,4 30,16" fill="var(--brand)" opacity=".55"/>
       </svg>
       <span class="logo__text">
-        <span class="logo__ja">南部鉄道</span>
-        <span class="logo__en">Nanbu Railway</span>
+        <span class="logo__ja">ユメイブの部屋</span>
+        <span class="logo__en">yumeibu's site</span>
       </span>
     </a>
 
     <nav class="primary-nav" aria-label="主要ナビゲーション">
-      <a href="../railway/index.html">鉄道について</a>
+      <a href="../railway/index.html">南部鉄道</a>
       <a href="index.html" class="is-active">Robloxモデル配布</a>
     </nav>
 
     <div class="header-actions">
+      <div class="theme-switch" role="group" aria-label="テーマ設定">
+        <button type="button" data-theme-choice="light" aria-pressed="false" aria-label="ライトモード">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M4.2 4.2l1.7 1.7M18.1 18.1l1.7 1.7M2.5 12h2.4M19.1 12h2.4M4.2 19.8l1.7-1.7M18.1 5.9l1.7-1.7"/></svg>
+        </button>
+        <button type="button" data-theme-choice="dark" aria-pressed="false" aria-label="ダークモード">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a6.8 6.8 0 0 0 10.5 10.5z"/></svg>
+        </button>
+        <button type="button" data-theme-choice="system" aria-pressed="false" aria-label="システム設定に従う">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="4.5" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 16.5V20"/></svg>
+        </button>
+      </div>
       <a class="btn btn--primary" href="trains.html">モデルを見る</a>
       <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="mobileNav" aria-label="メニューを開く">
         <svg width="18" height="14" viewBox="0 0 18 14" aria-hidden="true">
@@ -45,7 +64,7 @@
   </div>
 
   <nav class="container mobile-nav" id="mobileNav" aria-label="モバイルナビゲーション">
-    <a href="../railway/index.html">鉄道について</a>
+    <a href="../railway/index.html">南部鉄道</a>
     <a href="index.html" class="is-active">Robloxモデル配布</a>
     <div class="mobile-nav__ctas">
       <a class="btn btn--primary" href="trains.html">モデルを見る</a>
@@ -67,15 +86,17 @@
         <a href="terms.html" class="is-active">利用規約</a>
       </nav>
 
-      <p class="terms-note">以下は利用規約のテンプレートです。実際の運用に合わせて内容をご確認・編集のうえお使いください。</p>
+      <p class="terms-note">ダウンロード・改造の前に、必ず下記をお読みください。</p>
 
       <ol class="terms-list">
-        <li>本モデルは個人の非商用利用に限り、自由にご利用いただけます。</li>
-        <li>再配布・再販売は禁止します。</li>
-        <li>改変して公開する場合は、配布元(本サイト)を明記してください。</li>
-        <li>本モデルの利用によって生じたいかなる損害についても、作者は責任を負いません。</li>
-        <li>本サイトはRoblox Corporationおよびその関連会社とは一切関係ありません。</li>
+        <li>自作発言は禁止です。</li>
+        <li>いかなる場合でも二次配布は禁止です。</li>
+        <li>一部のパーツ（走行システム含む）を別の車両へ流用することは禁止です。二次配布もだめです。</li>
+        <li>上記2,3をせずに改造する場合は改造内容を制作者に言っていただけると可能な場合もあります。<br>ただ、許可を得て改造しても二次配布は絶対にダメです。(さすがに幕くらいは追加・改造していいよ)</li>
       </ol>
+
+      <p class="page-lead">上記のことを守って楽しいRobloxライフを送ってください。</p>
+      <p class="page-lead">連絡:<a href="mailto:yumeibu960@gmail.com" style="color:var(--brand);font-weight:700;text-decoration:underline">yumeibu960@gmail.com</a></p>
     </div>
   </section>
 </main>
@@ -84,21 +105,20 @@
   <div class="container">
     <div class="footer__grid">
       <div class="footer__brand">
-        <a class="logo" href="../index.html" aria-label="南部鉄道 トップへ">
+        <a class="logo" href="../index.html" aria-label="ユメイブの部屋 トップへ">
           <svg class="logo__mark" viewBox="0 0 34 30" aria-hidden="true">
             <polygon points="4,26 4,14 24,4 24,16" fill="var(--brand)"/>
             <polygon points="12,26 12,14 30,4 30,16" fill="var(--brand)" opacity=".55"/>
           </svg>
           <span class="logo__text">
-            <span class="logo__ja">南部鉄道</span>
-            <span class="logo__en">Nanbu Railway</span>
+            <span class="logo__ja">ユメイブの部屋</span>
+            <span class="logo__en">yumeibu's site</span>
           </span>
         </a>
-        <p>Roblox上で運行する「南部鉄道 南部線」の情報サイトです。</p>
       </div>
 
       <div class="footer__col">
-        <h3>鉄道について</h3>
+        <h3>南部鉄道</h3>
         <ul>
           <li><a href="../railway/index.html">概要</a></li>
           <li><a href="../railway/route.html">路線図</a></li>
@@ -117,8 +137,8 @@
     </div>
 
     <div class="footer__bottom">
-      <p class="disclaimer">本サイトは個人・コミュニティによるファン制作物です。Roblox Corporationおよびその関連会社とは一切関係ありません。</p>
-      <p>© 2026 南部鉄道</p>
+      <p class="disclaimer">当サイトはすべてRoblox内の架空の内容ですので、モデルになっている車両の実在する会社へのお問い合わせは絶対にしないでください。</p>
+      <p>© 2026 yumeibu</p>
     </div>
   </div>
 </footer>
