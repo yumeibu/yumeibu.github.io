@@ -25,6 +25,36 @@
   --radius-m:8px;
 }
 
+/* ===== ダークモード =====
+   data-theme="dark"  : 常にダーク
+   data-theme="light" : 常にライト
+   属性なし/"system"  : OSの設定に追従 */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#1b1b1d;
+    --panel:#242327;
+    --panel-alt:#2b2a2f;
+    --ink:#f0efec;
+    --ink-muted:#a3a2a8;
+    --border:#3a393e;
+    --header-bar:#c9c8cd;
+    --brand-dim:#402c26;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#1b1b1d;
+  --panel:#242327;
+  --panel-alt:#2b2a2f;
+  --ink:#f0efec;
+  --ink-muted:#a3a2a8;
+  --border:#3a393e;
+  --header-bar:#c9c8cd;
+  --brand-dim:#402c26;
+}
+:root{color-scheme:light}
+:root:not([data-theme="light"]){color-scheme:light dark}
+:root[data-theme="dark"]{color-scheme:dark}
+
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){
@@ -67,7 +97,7 @@ section{padding-block:clamp(2.6rem,6vw,4.6rem)}
 
 /* ===== ヘッダー(サイト全体の共通メニュー) ===== */
 .site-header{
-  position:sticky;top:0;z-index:60;background:rgba(245,245,242,.92);
+  position:sticky;top:0;z-index:60;background:var(--bg);
   backdrop-filter:blur(10px);border-bottom:1px solid var(--border);
 }
 .site-header__inner{display:flex;align-items:center;justify-content:space-between;padding-block:.8rem}
@@ -83,6 +113,22 @@ section{padding-block:clamp(2.6rem,6vw,4.6rem)}
 .primary-nav a.is-active{color:var(--ink);border-bottom-color:var(--brand)}
 
 .header-actions{display:flex;align-items:center;gap:1.1rem}
+
+/* ===== テーマ切り替え(ライト/ダーク/システム設定) ===== */
+.theme-switch{
+  display:flex;align-items:center;gap:.15rem;
+  border:1px solid var(--border);border-radius:var(--radius-s);
+  padding:.2rem;background:var(--panel);flex:none;
+}
+.theme-switch button{
+  display:flex;align-items:center;justify-content:center;
+  width:30px;height:30px;border-radius:calc(var(--radius-s) - 1px);
+  color:var(--ink-muted);transition:background-color .15s, color .15s;
+}
+.theme-switch button:hover{color:var(--ink)}
+.theme-switch button.is-active{background:var(--brand);color:#fff}
+.theme-switch svg{width:16px;height:16px}
+
 .menu-toggle{
   display:none;border:1px solid var(--border);border-radius:var(--radius-s);
   width:38px;height:38px;align-items:center;justify-content:center;color:var(--ink);
